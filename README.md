@@ -16,11 +16,7 @@ Sichuan University, Chengdu, China
 
 <sup>3</sup> College of Computer Science, Sichuan University, Chengdu, China 
 
-<h3 style="color:#b22222;"> To Appear at CVPR 2025 </h3>
-
-<h4>
-<a href="">📺 Video</a>
-</h4>
+<h3 style="color:#b22222;"> Accepted to CAD/Graphics 2025 and Recommended to Computers & Graphics Journal </h3>
 
 </div>
 
