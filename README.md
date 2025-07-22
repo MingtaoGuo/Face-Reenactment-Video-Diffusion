@@ -61,7 +61,9 @@ pip install -r requirements.txt
 ## Download weights
 ```shell
 mkdir pretrained_weights
-mkdir pretrained_weights/frvd
+mkdir pretrained_weights/checkpoint-30000-14frames
+mkdir pretrained_weights/facecropper
+mkdir pretrained_weights/liveportrait
 git-lfs install
 
 git clone https://huggingface.co/MartinGuo/Face-Reenactment-Video-Diffusion
@@ -82,16 +84,23 @@ mv stable-video-diffusion-img2vid-xt pretrained_weights
 git clone https://huggingface.co/stabilityai/sd-vae-ft-mse
 mv sd-vae-ft-mse pretrained_weights/stable-video-diffusion-img2vid-xt
 ```
-The weights will be put in the `./pretrained_weights` directory. Heads up! The whole downloading process could take quite a long time.
-Finally, these weights should be orgnized as follows:
+
+The weights will be saved in the `./pretrained_weights`  directory. Please note that the download process may take a significant amount of time.
+Once completed, the weights should be arranged in the following structure:
 
 ```text
 ./pretrained_weights/
-|-- relipa
-|   |-- unet.pth
-|   |-- ref_embedder.pth
-|   |-- light_embedder.pth
+|-- checkpoint-30000-14frames
+|   |-- warping_feature_mapper.pth
 |   |-- head_embedder.pth
+|-- facecropper
+|   |-- insightface
+|   |-- landmark.onnx
+|-- liveportrait
+|   |-- appearance_feature_extractor.pth
+|   |-- motion_extractor.pth
+|   |-- spade_generator.pth
+|   |-- warping_module.pth
 |-- stable-video-diffusion-img2vid-xt
     |-- sd-vae-ft-mse
     |   |-- config.json
@@ -112,82 +121,23 @@ Finally, these weights should be orgnized as follows:
 ```
 # 🚀 Training and Inference 
 
-## Inference of the Relightable Portrait Animation
-
-Here's the command to run preprocess scripts: Use DECA to extract the pose from the driving video and the mesh from the reference portrait, then render shading hints by combining the driving video's pose, the reference portrait's mesh, and the target lighting.
+## Inference of the FRVD
 
 ```shell
-python preprocess.py --video_path resources/WDA_DebbieDingell1_000.mp4 --source_path resources/reference.png --light_path resources/target_lighting1.png --save_path resources/shading.mp4 --motion_align relative
-```
-
-After running ```preprocess.py``` you'll get the results: 
-
-1. Reference, 2. Mask, 3. Driving image, 4. Landmark, 5. Shading hints 
-![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/shading.png)
-
-Here's the command to run inference scripts: Guide our model with the shading hints obtained from preprocessing to generate results where the pose is consistent with that of the driving video, the identity is consistent with the reference image, and the lighting is consistent with the target lighting. 
-
-```shell
-python inference.py --pretrained_model_name_or_path pretrained_weights/stable-video-diffusion-img2vid-xt --checkpoint_path pretrained_weights/relipa/ --video_path resources/shading.mp4 --save_path result.mp4 --guidance 4.5 --inference_steps 25 --driving_mode relighting
+python inference.py
 ```
 
 After running ```inference.py``` you'll get the results: 
 
-1. Reference, 2. Shading hints, 3. Relighting result, 4. Driving image
+1. Source image, 2. Driving video, 3. Reenactment result
 ![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/relighting.png)
-## Training of the Relightable Portrait Animation 
+## Training of the FRVD 
 ```shell
-python train.py --pretrained_model_name_or_path pretrained_weights/stable-video-diffusion-img2vid-xt \
-                --height 512 --width 512  --num_frames 16 --validation_steps 100 --max_train_steps 30000 \
-                --gradient_accumulation_steps 8 --gradient_checkpointing True --learning_rate 1e-5 --use_8bit_adam True \
-                --sample_rate 4 --num_workers 2 --checkpointing_steps 1000 --checkpoints_total_limit 2 \
-                --data_meta_path TalkingHeadVideo/VFHQ/VFHQ-data-consistent.json
+python train.py 
 ```
-## Talking Head Video Dataset
-|VFHQ-video|VFHQ-kpmap|VFHQ-mesh|VFHQ-mask|
-|-|-|-|-|
-|![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/video.png)|![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/kpmap.png)|![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/mesh.png)|![](https://github.com/MingtaoGuo/Relightable-Portrait-Animation/blob/main/assets/maskdd.png)|
 
-Making a training dataset for VFHQ
-```text
-    |-- VFHQ
-        |-- Clip+zZEv-ATOpoY+P0+C2+F3168-3532_10369.mp4
-        ...
-```
-```shell
-python make_dataset.py --video_path ./VFHQ --save_path ./TalkingHeadVideo --dataset VFHQ
-```
-Making a training dataset for CelebV-HQ
-```text
-    |-- CelebV-HQ
-        |-- __lRwnjxeCg_1.mp4
-        ...
-```
-```shell
-python make_dataset.py --video_path ./CelebV-HQ --save_path ./TalkingHeadVideo --dataset CelebV-HQ
-```
-Final dataset format
-```text
-./TalkingHeadVideo/
-    |-- VFHQ
-        |-- VFHQ-mask
-            |-- Clip+zZEv-ATOpoY+P0+C2+F3168-3532_10369.mp4
-             ...
-        |-- VFHQ-kpmap
-        |-- VFHQ-video
-        |-- VFHQ-mesh
-        VFHQ-data-consistent.json
-    |-- CelebV-HQ
-        |-- CelebV-HQ-mask
-            |-- __lRwnjxeCg_1.mp4
-             ...
-        |-- CelebV-HQ-kpmap
-        |-- CelebV-HQ-video
-        |-- CelebV-HQ-mesh
-        CelebV-HQ-data-consistent.json
-```
 # Acknowledgements
-We first thank to the contributors to the [StableVideoDiffusion](https://github.com/Stability-AI/generative-models), [SVD_Xtend](https://github.com/pixeli99/SVD_Xtend), [Moore-AnimateAnyone](https://github.com/MooreThreads/Moore-AnimateAnyone), [Echomimic](https://github.com/antgroup/echomimic) and [MimicMotion](https://github.com/Tencent/MimicMotion) repositories, for their open research and exploration. Furthermore, our repo incorporates some codes from [DECA](https://github.com/yfeng95/DECA), [MediaPipe](https://github.com/google-ai-edge/mediapipe) and [U2Net](https://github.com/xuebinqin/U-2-Net), and we extend our thanks to them as well.
+We first thank to the contributors to the [StableVideoDiffusion](https://github.com/Stability-AI/generative-models), [SVD_Xtend](https://github.com/pixeli99/SVD_Xtend) and [MimicMotion](https://github.com/Tencent/MimicMotion) repositories, for their open research and exploration. Furthermore, our repo incorporates some codes from [DECA](https://github.com/yfeng95/DECA), [MediaPipe](https://github.com/google-ai-edge/mediapipe) and [U2Net](https://github.com/xuebinqin/U-2-Net), and we extend our thanks to them as well.
 ## Citation
 If you use this model in your research, please consider citing:
 
