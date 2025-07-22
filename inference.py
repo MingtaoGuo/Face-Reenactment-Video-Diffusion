@@ -142,7 +142,7 @@ class FaceAlign():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--pretrained_weights", type=str, default="./pretrained_weights/") 
-    parser.add_argument("--source_image", type=str, default="./resources/s1.jpg") 
+    parser.add_argument("--source_image", type=str, default="./resources/source.jpg") 
     parser.add_argument("--driving_video", type=str, default="./resources/driving.mp4") 
     parser.add_argument("--save_path", type=str, default="./resources/result.mp4") 
     parser.add_argument("--is_align", type=bool, default=False) 
