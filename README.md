@@ -4,7 +4,7 @@
 
 [Mingtao Guo](https://github.com/MingtaoGuo)<sup>1</sup>&nbsp;
 [Guanyu Xing](https://ccs.scu.edu.cn/info/1053/3845.htm)<sup>2</sup>&nbsp;
-[Yanci Zhang]()<sup>3</sup>&nbsp;
+[Yanci Zhang](https://cs.scu.edu.cn/info/1279/13679.htm)<sup>3</sup>&nbsp;
 [Yanli Liu](https://cs.scu.edu.cn/info/1279/13675.htm)<sup>1,3</sup>&nbsp;
 
 
