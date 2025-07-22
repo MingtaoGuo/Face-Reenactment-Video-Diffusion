@@ -42,7 +42,7 @@ cd Face-Reenactment-Video-Diffusion
 2. Install the dependencies:
 
 ```bash
-conda create -n relipa python=3.8
+conda create -n frvd python=3.8
 conda activate frvd
 ```
 3. Install packages for inference:
