@@ -30,7 +30,6 @@ We are going to make all the following contents available:
 - [x] Model inference code
 - [x] Model checkpoint
 - [x] Training code
-- [x] Data processing code
 
 ## Installation
 
