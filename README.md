@@ -137,20 +137,8 @@ python train.py
 ```
 
 # Acknowledgements
-We first thank to the contributors to the [StableVideoDiffusion](https://github.com/Stability-AI/generative-models), [SVD_Xtend](https://github.com/pixeli99/SVD_Xtend) and [MimicMotion](https://github.com/Tencent/MimicMotion) repositories, for their open research and exploration. Furthermore, our repo incorporates some codes from [DECA](https://github.com/yfeng95/DECA), [MediaPipe](https://github.com/google-ai-edge/mediapipe) and [U2Net](https://github.com/xuebinqin/U-2-Net), and we extend our thanks to them as well.
-## Citation
-If you use this model in your research, please consider citing:
+We first thank to the contributors to the [StableVideoDiffusion](https://github.com/Stability-AI/generative-models), [SVD_Xtend](https://github.com/pixeli99/SVD_Xtend) and [MimicMotion](https://github.com/Tencent/MimicMotion) repositories, for their open research and exploration. Furthermore, our repo incorporates some codes from [LivePortrait](https://github.com/KwaiVGI/LivePortrait) and [InsightFace](https://github.com/deepinsight/insightface), and we extend our thanks to them as well.
 
-```bibtex
-@InProceedings{Guo_2025_CVPR,
-    author    = {Guo, Mingtao and Xing, Guanyu and Liu, Yanli},
-    title     = {High-Fidelity Relightable Monocular Portrait Animation with Lighting-Controllable Video Diffusion Model},
-    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
-    month     = {June},
-    year      = {2025},
-    pages     = {228-238}
-}
-```
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
