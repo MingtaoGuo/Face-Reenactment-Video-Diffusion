@@ -124,7 +124,7 @@ python inference.py
 After running ```inference.py``` you'll get the results: 
 
 1. Source image, 2. Driving video, 3. Reenactment result
-![](https://github.com/MingtaoGuo/Face-Reenactment-Video-Diffusion/blob/main/assets/result.png)
+![](https://github.com/MingtaoGuo/Face-Reenactment-Video-Diffusion/blob/main/assets/result.gif)
 ## Training of the FRVD 
 ```shell
 python train.py 
