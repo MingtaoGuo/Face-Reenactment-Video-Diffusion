@@ -91,7 +91,7 @@ class LargePoseFaceReenactment():
         
         pixel_values = []
         pixel_ref_values = np.array(Image.open(ref_path).resize([512, 512]))[..., :3]
-        num = 200#len(os.listdir(path))
+        num = len(os.listdir(path))
         for i in range(1, num + 1):
             img = np.array(Image.open(f"{path}/{str(i).zfill(5)}.png"), dtype=np.uint8)
             img = cv2.resize(img, (512, 512))
