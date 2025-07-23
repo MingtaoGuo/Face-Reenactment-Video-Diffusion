@@ -25,6 +25,21 @@ Sichuan University, Chengdu, China
 </div>
 </div>
 
+## Instructions for GRSI Replicability Submission
+To replicate the main results (as shown in the Fig. 2), please follow the steps below:
+
+You may modify the source image and driving video paths in ```inference.py``` to test with your own inputs. 
+```resources/source1.png--resources/driving1.mp4
+resources/source2.png--resources/driving2.mp4
+resources/source3.png--resources/driving3.mp4
+resources/source4.png--resources/driving4.mp4
+resources/source5.png--resources/driving5.mp4
+```
+Hardware Requirements
+- GPU: NVIDIA RTX 4090 or equivalent
+- VRAM: At least 12 GB recommended
+- Inference Time: Approximately 4 minutes per 100-frame video on an RTX 4090
+
 ## :bookmark_tabs: Todos
 We are going to make all the following contents available:
 - [x] Model inference code
