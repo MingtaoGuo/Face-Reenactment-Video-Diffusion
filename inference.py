@@ -142,12 +142,12 @@ class FaceAlign():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--pretrained_weights", type=str, default="./pretrained_weights/") 
-    parser.add_argument("--source_image", type=str, default="./resources/source.jpg") 
-    parser.add_argument("--driving_video", type=str, default="./resources/driving.mp4") 
-    parser.add_argument("--save_path", type=str, default="./resources/result.mp4") 
+    parser.add_argument("--source_image", type=str, default="./resources/source1.png") 
+    parser.add_argument("--driving_video", type=str, default="./resources/driving1.mp4") 
+    parser.add_argument("--save_path", type=str, default="./resources/result1.mp4") 
     parser.add_argument("--is_align", type=bool, default=False) 
     parser.add_argument("--num_inference_step", type=int, default=25) 
-    parser.add_argument("--guidance_scale", type=int, default=3.5) 
+    parser.add_argument("--guidance_scale", type=int, default=2.5) 
     args = parser.parse_args()
 
     largepose = LargePoseFaceReenactment(pretrained_model_name_or_path=os.path.join(args.pretrained_weights, "stable-video-diffusion-img2vid-xt"), 
