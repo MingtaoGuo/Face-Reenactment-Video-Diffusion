@@ -29,7 +29,8 @@ Sichuan University, Chengdu, China
 To replicate the main results (as shown in the Fig. 2), please follow the steps below:
 
 You may modify the source image and driving video paths in ```inference.py``` to test with your own inputs. 
-```resources/source1.png--resources/driving1.mp4
+```
+resources/source1.png--resources/driving1.mp4
 resources/source2.png--resources/driving2.mp4
 resources/source3.png--resources/driving3.mp4
 resources/source4.png--resources/driving4.mp4
