@@ -58,6 +58,8 @@ cd Face-Reenactment-Video-Diffusion
 2. Install the dependencies:
 
 ```bash
+apt update 
+apt install git-lfs
 conda create -n frvd python=3.8
 conda activate frvd
 ```
