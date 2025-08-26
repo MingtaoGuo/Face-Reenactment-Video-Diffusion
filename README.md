@@ -135,7 +135,6 @@ Once completed, the weights should be arranged in the following structure:
 # 🚀 Training and Inference 
 
 ## Inference of the FRVD
-
 ```shell
 python inference.py
 ```
@@ -145,6 +144,30 @@ After running ```inference.py``` you'll get the results:
 1. Source image, 2. Driving video, 3. Reenactment result
 ![](https://github.com/MingtaoGuo/Face-Reenactment-Video-Diffusion/blob/main/assets/result.gif)
 ## Training of the FRVD 
+### Download datasets
+```shell
+git-lfs install
+git clone https://huggingface.co/datasets/MartinGuo/TalkingHeadVideo
+
+cd TalkingHeadVideo
+unzip CelebV-HQ-crop-liveportrait.zip
+unzip VFHQ-video-liveportrait.zip
+```
+
+The datasets will be saved in the `./TalkingHeadVideo`  directory. Please note that the download process may take a significant amount of time.
+Once completed, the datasets should be arranged in the following structure:
+
+```text
+./TalkingHeadVideo/
+|-- CelebV-HQ-crop-liveportrait
+|   |-- hk9jXpszz0I_2_0.mp4
+|   |-- _msjEt4-jZc_0.mp4
+        ...
+|-- VFHQ-video-liveportrait
+|   |-- Clip+HKb2I-q2k2E+P0+C1+F3658-3845_12001.mp4
+|   |-- Clip+HKb2I-q2k2E+P0+C0+F991-1129_7612.mp4
+        ...
+```
 ```shell
 python train.py 
 ```
