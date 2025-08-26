@@ -479,7 +479,7 @@ def parse_args():
         "--data_meta_paths",
         type=str,
         nargs='+',
-        default=["TalkingHeadVideo/CelebV-HQ/CelebV-HQ-crop-liveportrait/", "TalkingHeadVideo/VFHQ/VFHQ-video-liveportrait/"],
+        default=["TalkingHeadVideo/CelebV-HQ-crop-liveportrait/", "TalkingHeadVideo/VFHQ-video-liveportrait/"],
         help=(
             "Number of subprocesses to use for data loading. 0 means that the data will be loaded in the main process."
         ),
