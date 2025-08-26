@@ -135,6 +135,8 @@ Once completed, the weights should be arranged in the following structure:
 # 🚀 Training and Inference 
 
 ## Inference of the FRVD
+**⚠️ Inference WARNINGS**
+During inference, at least 12 GB of GPU memory is required, and the memory consumption increases with the length of the driving video. When the driving video is too long, it may lead to out-of-memory errors.
 ```shell
 python inference.py
 ```
