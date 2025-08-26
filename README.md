@@ -168,6 +168,9 @@ Once completed, the datasets should be arranged in the following structure:
 |   |-- Clip+HKb2I-q2k2E+P0+C0+F991-1129_7612.mp4
         ...
 ```
+**⚠️ TRAINING WARNINGS**
+In our experiments, the default training parameters in `train.py` require approximately 42 GB of GPU memory. The proposed method was trained on a single A6000 GPU for about six days.
+
 ```shell
 python train.py 
 ```
