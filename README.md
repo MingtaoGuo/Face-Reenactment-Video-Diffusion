@@ -40,6 +40,7 @@ Hardware Requirements
 - GPU: NVIDIA RTX 4090 or equivalent
 - VRAM: At least 12 GB recommended
 - Inference Time: Approximately 4 minutes per 100-frame video on an RTX 4090
+### Congratulations! We have passed the GRSI reproducibility review. Here is the badge we received [![](https://www.replicabilitystamp.org/logo/Reproducibility-small.png)](http://www.replicabilitystamp.org#https-github-com-mingtaoguo-face-reenactment-video-diffusion)
 
 ## :bookmark_tabs: Todos
 We are going to make all the following contents available:
